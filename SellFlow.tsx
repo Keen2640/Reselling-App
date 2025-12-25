@@ -1,7 +1,8 @@
 
 import React from 'react';
 import { Category } from '../types';
-import ListingForm from './ListingForm';
+import ClothingListingForm from './ClothingListingForm';
+import FurnitureListingForm from './FurnitureListingForm';
 
 interface SellFlowProps {
   category: Category | null;
@@ -10,8 +11,12 @@ interface SellFlowProps {
 }
 
 const SellFlow: React.FC<SellFlowProps> = ({ category, onSelectCategory, onCancel }) => {
-  if (category) {
-    return <ListingForm category={category} onBack={() => onSelectCategory(null)} />;
+  if (category === 'clothing') {
+    return <ClothingListingForm onBack={() => onSelectCategory(null)} />;
+  }
+
+  if (category === 'furniture') {
+    return <FurnitureListingForm onBack={() => onSelectCategory(null)} />;
   }
 
   return (
@@ -77,4 +82,3 @@ const SellFlow: React.FC<SellFlowProps> = ({ category, onSelectCategory, onCance
 };
 
 export default SellFlow;
-
